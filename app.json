@@ -19,12 +19,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundImage": "./assets/splash.png"
       },
       "permissions": [
         "android.permission.CAMERA",
-        "android.permission.RECORD_AUDIO"
+        "android.permission.RECORD_AUDIO",
+        "android.permission.INTERNET"
       ],
       "package": "com.ghostpye.catalogdigitization"
     },
@@ -39,6 +39,7 @@
         }
       ],
       "expo-localization",
+      "./plugins/trust-local-certs.js"
     ],
     "extra": {
       "eas": {

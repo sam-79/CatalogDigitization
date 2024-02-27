@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, Button, Image, Pressable, Dimensions, Alert } from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import { HomeStyles as styles } from './styles';
-import { Audio } from "expo-av";
+import { Audio, InterruptionModeIOS, InterruptionModeAndroid } from "expo-av";
 import { useTranslation } from 'react-i18next';
 
 const SCREENWIDTH = Dimensions.get("window").width;
@@ -41,17 +41,42 @@ const VoiceAddProduct = ({ navigation }) => {
     async function startRecording() {
 
         await Audio.setAudioModeAsync({
-            playsInSilentModeIOS: true,
             allowsRecordingIOS: true,
+            interruptionModeIOS: InterruptionModeIOS.DoNotMix,
+            playsInSilentModeIOS: true,
+            shouldDuckAndroid: true,
+            interruptionModeAndroid: InterruptionModeAndroid.DoNotMix,
+            playThroughEarpieceAndroid: true,
         }); // <= important for IOS
 
         const newRecording = new Audio.Recording();
         setSound(newRecording);
 
+        const recordingOptions = {
+            // android not currently in use, but parameters are required
+            android: {
+                extension: '.wav',
+                outputFormat: Audio.AndroidOutputFormat.MPEG_4,
+                audioEncoder: Audio.AndroidAudioEncoder.AAC,
+                sampleRate: 44100,
+                numberOfChannels: 2,
+                bitRate: 128000,
+            },
+            ios: {
+                extension: '.wav',
+                audioQuality: Audio.IOSAudioQuality.HIGH,
+                sampleRate: 44100,
+                numberOfChannels: 1,
+                bitRate: 128000,
+                linearPCMBitDepth: 16,
+                linearPCMIsBigEndian: false,
+                linearPCMIsFloat: false,
+            },
+        };
 
-        await newRecording.prepareToRecordAsync(
-            Audio.RecordingOptionsPresets.HIGH_QUALITY
-        );
+
+
+        await newRecording.prepareToRecordAsync(recordingOptions);
 
         // newRecording.setOnRecordingStatusUpdate((status) => {
         //     //console.log("status", status)

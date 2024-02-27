@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { Alert } from 'react-native';
 
 const initialState = {
-  value: "http://34.93.176.96",
+  value: null, // To bypass the Hostname screen, add your server IP address(with port no. on local network) here. ex "http://192.164.176.96:8000"
   isLoading: false,
   isSuccess: false,
   isError: false,
