@@ -38,6 +38,13 @@
           "cameraPermission": "Allow CatalogDigitization to access your camera."
         }
       ],
+      [
+        "@react-native-voice/voice",
+        {
+          "microphonePermission": "Allow Catalog Digitization to access the microphone",
+          "speechRecognitionPermission": "Allow Catalog Digitization to securely recognize user speech"
+        }
+      ],
       "expo-localization",
       "./plugins/trust-local-certs.js"
     ],

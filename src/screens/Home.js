@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllProduct } from '../api/retailproduct';
 import { useTranslation } from 'react-i18next';
 
-
 const Home = ({ navigation }) => {
 
   const { t } = useTranslation();
@@ -36,8 +35,11 @@ const Home = ({ navigation }) => {
       case 'product_scan':
         navigation.navigate("ScanProduct", { source: "image" });
         break;
-      case 'product_voice':
-        navigation.navigate("VoiceAddProduct", { source: "voice" });
+      // case 'product_voice':
+      //   navigation.navigate("VoiceAddProduct", { source: "voice" });
+      //   break;
+      case 'analyze_voice':
+        navigation.navigate("AnalyzeVoice", { source: "voice" });
         break;
 
       default:
@@ -128,14 +130,23 @@ const Home = ({ navigation }) => {
             position: 1,
             color: '#4caf50',
 
-          },{
+          },
+          // {
+          //   text: t("enter_voice"),
+          //   icon: <MaterialCommunityIcons name='microphone' size={25} />,
+          //   name: "product_voice",
+          //   position: 1,
+          //   color: '#4caf50',
+
+          // },
+          {
             text: t("enter_voice"),
             icon: <MaterialCommunityIcons name='microphone' size={25} />,
-            name: "product_voice",
+            name: "analyze_voice",
             position: 1,
             color: '#4caf50',
 
-          },
+          }
         ]}
         onPressItem={OnActionButtonClick}
       />

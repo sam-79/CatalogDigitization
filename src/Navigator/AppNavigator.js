@@ -16,6 +16,7 @@ import CustomDrawer from '../components/CustomDrawer';
 import ScanProduct from '../screens/ScanProduct';
 import VoiceAddProduct from '../screens/VoiceAddProduct';
 const Drawer = createDrawerNavigator();
+import AnalyzeVoice from '../screens/AnalyzeVoice';
 
 const AppNavigation = () => {
     // const userData = false;
@@ -39,6 +40,7 @@ const AppNavigation = () => {
                         <Drawer.Screen name="ViewProduct" component={ViewProduct} options={{ unmountOnBlur: true }} />
                         <Drawer.Screen name="ScanProduct" component={ScanProduct} options={{ unmountOnBlur: true }} />
                         <Drawer.Screen name='VoiceAddProduct' component={VoiceAddProduct} options={{ unmountOnBlur: true }} />
+                        <Drawer.Screen name='AnalyzeVoice' component={AnalyzeVoice} options={{ unmountOnBlur: true }} />
                     </Drawer.Group>
                 ) : (
                     <Drawer.Group>
