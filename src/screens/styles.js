@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-
+import { CUSTOM_MARGIN } from "../constants";
 const SCREENWIDTH = Dimensions.get("window").width;
 const SCREENHEIGHT = Dimensions.get("window").height;
 
@@ -8,10 +8,11 @@ export const AuthStyles = StyleSheet.create({
     container: {
         flex: 1,
         gap: 20,
-        paddingTop: 150,
-        paddingHorizontal: '5%',
+        // paddingTop: 50,
+        padding: CUSTOM_MARGIN,
         justifyContent: 'center',
-        alignContent: 'center'
+        alignItems: 'center',
+        backgroundColor:'#fff'
     },
     title: {
         fontSize: 36,
@@ -23,18 +24,21 @@ export const AuthStyles = StyleSheet.create({
         height: 45,
         borderWidth: 1,
         borderRadius: 25,
-        borderColor: 'coral',
+        borderColor: "#2c2e3a",
         paddingHorizontal: 20,
-        flexDirection: 'row', justifyContent: 'space-between',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width:"100%"
     },
     BtnStyle: {
-        backgroundColor: 'lightcoral',
+        backgroundColor: '#2c2e3a',
         borderRadius: 25,
         height: 45,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
         gap: 10,
+        width:"100%"
     },
     TextStyle: {
         color: 'white',
@@ -43,7 +47,7 @@ export const AuthStyles = StyleSheet.create({
     },
 });
 
-
+//not used
 export const HomeStyles = StyleSheet.create({
     container: {
         flex: 1,
@@ -170,10 +174,10 @@ export const HomeStyles = StyleSheet.create({
     },
     scrollViewContainer: {
         //backgroundColor:'blue',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        paddingVertical: 10,
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        // width: '100%',
+        // paddingVertical: 10,
 
     },
     inputContainer: {

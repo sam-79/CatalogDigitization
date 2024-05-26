@@ -1,10 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, Pressable, Button, Dimensions, Image } from 'react-native';
+import { View, Pressable, Dimensions, Image, StyleSheet, StatusBar, Linking } from 'react-native';
+import { Text, Button, useTheme } from 'react-native-paper';
 import { CameraView as Camera, useCameraPermissions } from 'expo-camera/next';
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { HomeStyles as styles } from './styles';
-const SCREENWIDTH = Dimensions.get("window").width;
+import { HomeStyles } from './styles';
 import { useTranslation } from 'react-i18next';
+import { APP_SCREENS } from '../constants';
+
+
+const SCREENWIDTH = Dimensions.get("window").width;
+const SCREENHEIGHT = Dimensions.get("window").height;
+const CUSTOM_MARGIN = 20;
 
 
 const ScanBarcode = ({ navigation }) => {
@@ -14,6 +20,7 @@ const ScanBarcode = ({ navigation }) => {
     const [imageUri, setImageUri] = useState(null);
     const cameraRef = useRef(null);
     const { t } = useTranslation();
+    const theme = useTheme();
 
     // Reset values when component is mounted or navigated back to
     useEffect(() => {
@@ -22,25 +29,29 @@ const ScanBarcode = ({ navigation }) => {
         setImageUri(null);
     }, []);
 
-    if (!permission) {
-        // Camera permissions are still loading
-        return (
-            <View>
-                <Text>{t("wait_permission")}</Text>
-                <Button onPress={requestPermission} title={t("grant_permission")} />
-            </View>
-        );
-    }
+    useEffect(() => {
+        requestPermission();
+    }, []);
 
-    if (!permission.granted) {
-        // Camera permissions are not granted yet
-        return (
-            <View style={styles.container}>
-                <Text style={{ textAlign: 'center' }}>{t("need_permission_for_camera")}</Text>
-                <Button onPress={requestPermission} title={t("grant_permission")} />
-            </View>
-        );
-    }
+    // if (!permission) {
+    //     // Camera permissions are still loading
+    //     return (
+    //         <View>
+    //             <Text>{t("wait_permission")}</Text>
+    //             <Button onPress={requestPermission} title={t("grant_permission")} />
+    //         </View>
+    //     );
+    // }
+
+    // if (!permission.granted) {
+    //     // Camera permissions are not granted yet
+    //     return (
+    //         <View style={{}}>
+    //             <Text style={{ textAlign: 'center' }}>{t("need_permission_for_camera")}</Text>
+    //             <Button onPress={requestPermission} title={t("grant_permission")} />
+    //         </View>
+    //     );
+    // }
 
     const onBarCodeScanned = async ({ data }) => {
         setBarcodeValue(data);
@@ -50,7 +61,7 @@ const ScanBarcode = ({ navigation }) => {
                 setImageUri(uri);
             }
         } catch (error) {
-            
+
         }
     };
 
@@ -61,10 +72,10 @@ const ScanBarcode = ({ navigation }) => {
     };
 
     return (
-        <View style={[styles.container, { alignItems: 'center' }]}>
-            {!barcodeValue && <Text style={styles.heading}>{t("scan_product_barcode")}</Text>}
+        <View style={styles.container}>
+            {/* {!barcodeValue && <Text variant='headlineMedium' >{t("scan_product_barcode")}</Text>} */}
             {/* {!barcodeValue && <Camera
-                style={[styles.cameraView, { height: SCREENWIDTH - 30 }]}
+                style={[, { height: SCREENWIDTH - 30 }]}
                 type={CameraType.back}
                 ratio="1:1"
                 ref={cameraRef}
@@ -79,57 +90,118 @@ const ScanBarcode = ({ navigation }) => {
                     style={[{
                         backgroundColor: flash ? '#fff' : '#ffffff00',
                         borderColor: !flash ? '#fff' : '#000',
-                    }, styles.cameraBtn]}
+                    }, ]}
                 >
                     <MaterialCommunityIcons name='torch' size={30} color={flash ? '#000000' : '#fff'} />
                 </Pressable>
             </Camera>} */}
 
             {
-                barcodeValue && imageUri ?
-                    <>
-                        <Image source={{ uri: imageUri }} style={[styles.cameraView, { height: SCREENWIDTH - 30 }]} />
-                        <Text style={{ textAlign: 'center', fontSize: 30 }}>{t("code_value")} {barcodeValue}</Text>
-                        <View style={styles.optionsView}>
-                            <Pressable
+                permission && permission.granted ?
+                    barcodeValue && imageUri ?
+                        <>
+                            <Text variant='headlineMedium' style={{ textAlign: 'center' }} >{t("result")}</Text>
+                            <Image source={{ uri: imageUri }} style={styles.cameraView} />
+                            <Text style={{ textAlign: 'center', fontSize: 30 }}>{t("code_value")} {barcodeValue}</Text>
+                            <View style={{}}>
+                                {/* <Pressable
                                 onPress={onBarCodeRescan}
-                                style={[styles.button, { backgroundColor: '#FF5733' }]}
+                                style={[, { backgroundColor: '#FF5733' }]}
                             >
                                 <Text style={{ color: 'white' }}>{t("rescan")}</Text>
                             </Pressable>
 
                             <Pressable
                                 onPress={() => navigation.navigate("AddProduct", { ean: barcodeValue, source: "barcodeImage" })}
-                                style={[styles.button, { backgroundColor: '#32CD32' }]}
+                                style={[{ backgroundColor: '#32CD32' }]}
                             >
                                 <Text style={{ color: 'white' }}>{t("proceed")}</Text>
-                            </Pressable>
-                        </View>
-                    </> :
-                    <Camera
-                        style={[styles.cameraView, { height: SCREENWIDTH - 30 }]}
-                        facing={'back'}
-                        ratio="1:1"
-                        ref={cameraRef}
-                        enableTorch={flash}
-                        barCodeScannerSettings={{
-                            barCodeTypes: ['aztec', 'ean13', 'ean8', 'qr', 'pdf417', 'upc_e', 'datamatrix', 'code39', 'code93', 'itf14', 'codabar', 'code128', 'upc_a'],
-                        }}
-                        onBarcodeScanned={onBarCodeScanned}
-                    >
-                        <Pressable
-                            onPress={() => setFlash(!flash)}
-                            style={[{
-                                backgroundColor: flash ? '#fff' : '#ffffff00',
-                                borderColor: !flash ? '#fff' : '#000',
-                            }, styles.cameraBtn]}
-                        >
-                            <MaterialCommunityIcons name='torch' size={30} color={flash ? '#000000' : '#fff'} />
-                        </Pressable>
-                    </Camera>
+                            </Pressable> */}
+                                <Button icon='torch'
+                                    mode='elevated'
+                                    // dark={true}
+                                    buttonColor={'#FF5733'}
+                                    textColor={theme.colors.background}
+                                    onPress={onBarCodeRescan}
+                                    style={{ height: 50, justifyContent: 'center', margin: CUSTOM_MARGIN }}>
+                                    {/* {t("rescan")} */}
+                                    <Text variant='titleLarge' style={{ color: theme.colors.background }}>{t("rescan")}</Text>
+                                </Button>
+                                <Button icon='torch'
+                                    mode='elevated'
+                                    // dark={true}
+                                    buttonColor={'#32CD32'}
+                                    textColor={theme.colors.background}
+                                    onPress={() => navigation.navigate(APP_SCREENS.ENTER_MANUALLY, { ean: barcodeValue, source: "barcodeImage" })}
+                                    style={{ height: 50, justifyContent: 'center', margin: CUSTOM_MARGIN }}>
+                                    {/* {t("proceed")} */}
+                                    <Text variant='titleLarge' style={{ color: theme.colors.background }}>{t("proceed")}</Text>
+                                </Button>
+                            </View>
+                        </> :
+                        <>
+                            <Text variant='headlineMedium' style={{ textAlign: 'center' }}>{t("scan_product_barcode")}</Text>
+                            <Camera
+                                style={styles.cameraView}
+                                facing={'back'}
+                                ratio="4:3"
+                                ref={cameraRef}
+                                enableTorch={flash}
+                                barCodeScannerSettings={{
+                                    barCodeTypes: ['aztec', 'ean13', 'ean8', 'qr', 'pdf417', 'upc_e', 'datamatrix', 'code39', 'code93', 'itf14', 'codabar', 'code128', 'upc_a'],
+                                }}
+                                onBarcodeScanned={onBarCodeScanned}
+                            />
+                            {/* <Pressable
+                                onPress={() => setFlash(!flash)}
+                                style={[{
+                                    backgroundColor: flash ? '#fff' : '#ffffff00',
+                                    borderColor: !flash ? '#fff' : '#000',
+                                },]}
+                            >
+                                <MaterialCommunityIcons name='torch' size={30} color={flash ? '#000000' : '#fff'} />
+                            </Pressable> */}
+
+                            <Button icon='torch'
+                                mode='elevated'
+                                // dark={true}
+                                buttonColor={theme.colors.primary}
+                                textColor={theme.colors.background}
+                                onPress={() => setFlash(!flash)}
+                                style={{ height: 50, justifyContent: 'center', margin: CUSTOM_MARGIN }}
+                            >
+                                {t("torch")}
+                            </Button>
+                        </> :
+                    <View style={[styles.container, { justifyContent: 'center', margin: CUSTOM_MARGIN }]}>
+                        <Text style={{ textAlign: 'center', margin: CUSTOM_MARGIN }}>{t("need_permission_for_camera")}</Text>
+                        <Button mode="contained" onPress={() => {
+                            if (!permission.canAskAgain) {
+                                Linking.openSettings();
+                            }
+                            requestPermission();
+                        }}>
+                            {t("grant_permission")}
+                        </Button>
+                    </View>
             }
+
+
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginTop: StatusBar.currentHeight,
+        // alignItems: 'center'
+    },
+    cameraView: {
+        flex: 1,
+        // width: SCREENWIDTH - CUSTOM_MARGIN * 10,
+        // height: ((SCREENWIDTH - CUSTOM_MARGIN * 2) * 3) / 4,
+    }
+})
 
 export default ScanBarcode;

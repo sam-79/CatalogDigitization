@@ -1,11 +1,14 @@
-import { View, Text, Alert, Pressable, ActivityIndicator } from 'react-native'
+import { View, Alert, Pressable, ActivityIndicator, StyleSheet, ScrollView } from 'react-native'
+import { Text, Button, useTheme } from 'react-native-paper';
 import React, { useState, useEffect } from 'react'
 import ProductInfo from '../components/ProductInfo';
-import { HomeStyles as styles, AuthStyles } from './styles';
+import { HomeStyles, AuthStyles } from './styles';
 import MyCustomButton from '../components/MyCustomButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { addProduct, getProductByAudio, getProductByEAN, getProductByImage } from '../api/retailproduct';
 import { useTranslation } from 'react-i18next';
+import { APP_SCREENS } from '../constants';
+const CUSTOM_MARGIN = 20;
 
 
 const AddProduct = ({ navigation, route }) => {
@@ -13,13 +16,14 @@ const AddProduct = ({ navigation, route }) => {
     const { value } = useSelector(state => state.hostname);
     const { userData } = useSelector(state => state.auth);
     const [isLoading, setIsLoading] = useState(false);
+    const theme = useTheme();
 
     const [product, setProduct] = useState({
         name: '',
         brand: '',
         image_url: '',
         category: '',
-        ean: route.params.ean,
+        ean: '', //route.params.ean
         description: '',
         price: '',
     });
@@ -29,6 +33,7 @@ const AddProduct = ({ navigation, route }) => {
         return navigation.addListener("focus", () => {
             if (route.params.source == 'barcodeImage') {
                 setIsLoading(true);
+                console.log("getbarcoeproduct started", userData)
                 getProductByEAN({ ean: route.params.ean, userData, hostname: value })
                     .then((response) => {
                         setIsLoading(false)
@@ -52,6 +57,7 @@ const AddProduct = ({ navigation, route }) => {
                 setIsLoading(true);
                 getProductByImage({ imageUri: route.params.imageUri, userData, hostname: value })
                     .then((response) => {
+                        console.log("image", response)
                         setIsLoading(false)
                         for (const key in response) {
                             if (product.hasOwnProperty(key)) {
@@ -67,7 +73,7 @@ const AddProduct = ({ navigation, route }) => {
                         setIsLoading(false)
 
                         //console.log(error)
-                        Alert.alert(t("message"), t("not_able_to_get_product_details_please_enter_manually"))
+                        Alert.alert(t("fail"), t("not_able_to_get_product_details_please_enter_manually"))
                     })
             } else if (route.params.source == 'productAudio') {
                 setIsLoading(true);
@@ -89,8 +95,18 @@ const AddProduct = ({ navigation, route }) => {
                         setIsLoading(false)
 
                         //console.log(error)
-                        Alert.alert(t("message"), t("not_able_to_get_product_details_please_enter_manually"))
+                        Alert.alert(t("fail"), t("not_able_to_get_product_details_please_enter_manually"))
                     })
+            } else if (route.params.source == APP_SCREENS.ADDPRODUCTBULK) {
+                let item = route.params.item;
+                for (const key in item) {
+                    if (product.hasOwnProperty(key)) {
+                        setProduct(prevData => ({
+                            ...prevData,  // Spread previous data to keep unchanged keys
+                            [key]: String(item[key])  // Update the specific key with the new value
+                        }));
+                    }
+                }
             }
         })
     }, [navigation])
@@ -119,6 +135,27 @@ const AddProduct = ({ navigation, route }) => {
     // }
 
 
+    const handleSave = () => {
+        //used specially for Bulk Add product
+        // const { onDataModify } = route.params;
+        // if (onDataModify) {
+        //     onDataModify(product);
+        // }
+        // navigation.goBack();
+        for (const key in product) {
+            if (product.hasOwnProperty(key)) {
+                if (product[key] === undefined || product[key] === null || product[key].trim() === '') {
+                    Alert.alert(t("error"), t("please_fill_all_details"))
+                    return;
+                }
+            }
+        }
+
+        console.log("handleSave, Addproduct.js")
+        navigation.navigate({ name: APP_SCREENS.ADDPRODUCTBULK, params: { product: { ...product, id: route.params.item.id }, source: APP_SCREENS.ENTER_MANUALLY }, merge: true })
+    };
+
+    //for saving product to user catalog
     const handleSaveProduct = () => {
 
         //checks for field should not empty
@@ -140,9 +177,9 @@ const AddProduct = ({ navigation, route }) => {
                 if (response.status === "Product Details Added Successfully") {
                     Alert.alert(t("success"), t("product_added_success"))
                 } else {
-                    Alert.alert(t("fail"), t(response.message))
+                    Alert.alert(t("fail"), response.message)
                 }
-                navigation.navigate("Home")
+                navigation.navigate(APP_SCREENS.HOME)
             })
             .catch((error) => {
                 setIsLoading(false);
@@ -152,31 +189,56 @@ const AddProduct = ({ navigation, route }) => {
     }
 
     return (
-        <View style={[styles.container, { alignItems: 'center' }]}>
-            <Text style={styles.heading}>
-                {
-                    isLoading ? t("loading_product_details") : t("enter_product_details")
-                }
-            </Text>
+        <ScrollView style={[styles.container, {}]}>
+
+            {
+                isLoading &&
+                <Text variant='headlineMedium' style={{ margin: CUSTOM_MARGIN, textAlign: 'center' }}>{t("loading_product_details")}</Text>
+            }
+
 
             {
                 isLoading ?
                     <>
                         <ActivityIndicator animating={isLoading} size="large" />
-                        <Text>{t("please_wait")}</Text>
+                        <Text variant='bodyMedium' style={{ margin: CUSTOM_MARGIN, textAlign: 'center' }}>{t("please_wait")}</Text>
                     </> :
                     <ProductInfo editable={true} productDetails={product} updateProductInfo={setProduct} />
             }
 
 
             {
-                !isLoading && <Pressable style={styles.continueButton} onPress={handleSaveProduct}>
-                    <Text style={styles.continueButtonText}>+ {t("add_product")}</Text>
-                </Pressable>
+                route.params.source === APP_SCREENS.ADDPRODUCTBULK ?
+                    <Button
+                        mode='elevated'
+                        // dark={true}
+                        buttonColor={theme.colors.primary}
+                        textColor={theme.colors.background}
+                        onPress={handleSave}
+                        style={{ height: 50, justifyContent: 'center', margin: CUSTOM_MARGIN }}
+                    >
+                        {t("save")}
+                    </Button>
+                    :
+                    !isLoading && <Button icon='plus'
+                        mode='elevated'
+                        // dark={true}
+                        buttonColor={theme.colors.primary}
+                        textColor={theme.colors.background}
+                        onPress={handleSaveProduct}
+                        style={{ height: 50, justifyContent: 'center', margin: CUSTOM_MARGIN }}
+                    >
+                        {t("add_product")}
+                    </Button>
             }
 
-        </View>
+        </ScrollView>
     )
 }
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+})
 export default AddProduct

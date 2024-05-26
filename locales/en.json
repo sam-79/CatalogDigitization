@@ -13,25 +13,25 @@
     "home": "Home",
     "scan_barcode": "Scan Barcode",
     "log_out": "Log out",
-    "scan_product_barcode": "scan product barcode",
+    "scan_product_barcode": "Scan product barcode",
     "scan_product": "Scan product",
     "enter_manually": "Enter manually",
     "analyze_product_image": "Analyze product image",
-    "code_value": "code value",
+    "code_value": "Code value",
     "rescan": "rescan",
     "proceed": "proceed",
     "message": "message",
     "not_able_to_get_product_details_please_enter_manually": "not able to get product details, please enter manually",
     "ok": "ok",
-    "enter_product_details": "enter product details",
+    "enter_product_details": "Enter product details",
     "product_title": "Product title",
     "barcode": "barcode",
-    "brand": "brand",
-    "image_URL": "image URL",
-    "category": "category",
-    "description": "description",
-    "price": "price",
-    "add_product": "add product",
+    "brand": "Brand",
+    "image_URL": "Image URL",
+    "category": "Category",
+    "description": "Description",
+    "price": "Price",
+    "add_product": "Add Product",
     "error": "error",
     "please_fill_all_details": "please fill all details",
     "fail_to_fetch_product": "fail to fetch product",
@@ -48,7 +48,7 @@
     "edit": "Edit",
     "close": "Close",
     "invalid_image_url": "Invalid image URL",
-    "ean": "ean",
+    "ean": "EAN",
     "product_added_success": "Product Added Successfully",
     "fail": "Fail",
     "fail_to_save": "Fail to save",
@@ -83,5 +83,83 @@
     "need_permission_for_mic":"We need your permission to access the microphone",
     "download_catalog":"Download catalog",
     "fail_save_file":"Fail to save file",
-    "file_saved":"File saved"
+    "file_saved":"File saved",
+    "upload_catalog":"Upload Your Catalog",
+    "upload_catalog_para":"Please upload your catalog data in CSV format. You can download or view a sample template to ensure your file matches the required format.",
+    "upload_csv":"Upload CSV",
+    "view_sample_csv":"View Sample CSV",
+    "save":"Save",
+    "unknow_error":"Unknown error",
+    "item":"item",
+    "result":"Result",
+    "remove":"remove",
+    "review":"Review",
+    "total_products":"Products",
+    "view_all":"View all",
+    "total_category":"Categories",
+    "settings":"Settings",
+    "share":"Share",
+    "share_app":"Share the app",
+    "follow_us":"Follow Us",
+    "made_with_love":"Made with Love",
+    "otp_verified":"OTP Verified, please signin",
+    "fail_otp":"Fail to verify OTP",
+    "invalid_otp":"Invalid OTP. Please enter a correct 6-digit OTP",
+    "fail_to_send_otp":"Fail to send OTP, please retry",
+    "enter_otp":"Enter OTP",
+    "otp_send_to":"OTP send to",
+    "verify":"Verify",
+    "resend_otp_in":"Resend OTP in",
+    "resend_otp":"Resend OTP",
+    "verify_otp":"Verify OTP",
+    "send_otp_to":"Send OTP to",
+    "send_otp":"Send OTP",
+    "other_option":"Other Options",
+    "share_catalog":"Share Catalog",
+    "update":"Update",
+    "more":"More",
+    "less":"Less",
+    "deleting_product":"Deleting product",
+    "modify":"Modify",
+    "loading":"Loading",
+    "total_categories":"Total Categories",
+    "total_brand":"Total brand",
+    "torch":"Torch",
+    "capture":"Capture",
+    "enter_name":"Enter Name",
+    "input_data":"Input Data",
+    "begin_your_digitisation_journey":"Begin your digitization journey",
+    "products":"Products",
+    "review_product_details":"Review products details",
+    "theme":"Theme",
+    "choose_theme":"Choose theme",
+    "light":"Light",
+    "catalog_statistics":"Catalog Statistics",
+    "voice_reg_para":"",
+    "voice_input":"Voice input"
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

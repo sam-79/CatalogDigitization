@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
-import { View, Text, Linking, Image, Platform, Alert } from 'react-native'
-
+import { View, Linking, Image, Platform, Alert, StyleSheet } from 'react-native'
+import { Text, Divider, TouchableRipple } from 'react-native-paper';
 import {
     DrawerContentScrollView, DrawerItem, DrawerView
 } from '@react-navigation/drawer';
@@ -15,7 +15,8 @@ import LanguageSelectModal from './LanguageSelectModal';
 import { useTranslation } from 'react-i18next';
 import * as FileSystem from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
-
+import { useTheme } from 'react-native-paper';
+const CUSTOM_MARGIN = 20;
 
 function CustomDrawer(props) {
 
@@ -25,7 +26,7 @@ function CustomDrawer(props) {
     const [modalVisible, setModalVisible] = useState(false);
     const navigation = useNavigation();
     const { t } = useTranslation();
-
+    const theme = useTheme();
 
 
     const navigateToScreen = (screenName) => {
@@ -81,28 +82,37 @@ function CustomDrawer(props) {
     }
 
     return (
-        <View style={{ backgroundColor: '#deebf7', }}>
+        <View style={{ backgroundColor: theme.colors.primary, }}>
             <View
                 style={{
-                    height: 200,
-                    alignItems: 'flex-start',
-                    justifyContent: 'center',
-                    paddingLeft: 20
+                    // height: 100,
+                    alignItems: 'center',
+                    // justifyContent: 'center',
+                    marginHorizontal: CUSTOM_MARGIN / 2,
+                    marginVertical: CUSTOM_MARGIN*2,
+                    flexDirection: 'row',
+                    // backgroundColor: "red"
 
                 }}
             >
                 <Image
-                    source={{ uri: "https://s3-ap-south-1.amazonaws.com/ondc-static-web-bucket/ondc-website-media/2023/09/blog-image-1.png" }}
-                    style={{ height: 150, width: 150 }}
+                    source={require('../../assets/profile.png')}
+                    defaultSource={require('../../assets/profile.png')}
+                    style={{ height: 50, width: 50 }}
                 />
 
-                <View style={{}}>
-                    <Text style={{ fontSize: 20, textAlign: 'left', }}>
+                <View style={{ marginHorizontal: CUSTOM_MARGIN / 2 }}>
+                    <Text variant='headlineSmall' style={{ color: theme.colors.background, fontWeight: '600' }}>
                         {/* Hello, {userData.email} */}
-                        {t("hello")}
+                        {t("sameer borkar")}
+                    </Text>
+                    <Text variant='titleSmall' style={{ color: theme.colors.background, fontWeight: '600' }}>
+                        {/* Hello, {userData.email} */}
+                        {t("sameer borkar")}
                     </Text>
 
                 </View>
+                {/* <MaterialCommunityIcons name='chevron-right' size={30} /> */}
             </View>
 
             <View style={{
@@ -111,44 +121,77 @@ function CustomDrawer(props) {
                 backgroundColor: '#fff',
                 paddingTop: 10
             }}>
+                {/* <TouchableRipple rippleColor="rgba(0, 0, 0, .32)">
+                    <View style={{ flexDirection: 'row', alignItems: 'center', margin: CUSTOM_MARGIN / 2, }}>
+                        <MaterialCommunityIcons name='account' size={35} />
+                        <Text style={{ marginLeft: 10, fontSize: 20 }}>{'Unfocused text'}</Text>
+                    </View>
+                </TouchableRipple>
+
+                <TouchableRipple rippleColor="rgba(0, 0, 0, .32)">
+                    <View style={{ flexDirection: 'row', alignItems: 'center', margin: CUSTOM_MARGIN / 2, }}>
+                        <MaterialCommunityIcons name='account' size={35} />
+                        <Text style={{ marginLeft: 10, fontSize: 20 }}>{'Unfocused text'}</Text>
+                    </View>
+                </TouchableRipple>
+
+                <TouchableRipple rippleColor="rgba(0, 0, 0, .32)">
+                    <View style={{ flexDirection: 'row', alignItems: 'center', margin: CUSTOM_MARGIN / 2, }}>
+                        <MaterialCommunityIcons name='account' size={35} />
+                        <Text style={{ marginLeft: 10, fontSize: 20 }}>{'Unfocused text'}</Text>
+                    </View>
+                </TouchableRipple> */}
+
+              
+
                 <DrawerItem
-                    label={t("profile")}
+                    label={t('profile')}
                     onPress={() => { }}
                     icon={({ focused, size }) => (
-                        <MaterialCommunityIcons name='account' size={25} />
+                        <MaterialCommunityIcons name='account' size={30} />
                     )}
+                    style={styles.itemViewStyle}
+                    labelStyle={styles.itemTextStyle}
                 />
 
                 <DrawerItem
                     label={t("home")}
                     onPress={() => navigateToScreen("Home")}
                     icon={({ focused, size }) => (
-                        <MaterialCommunityIcons name='home' size={25} />
+                        <MaterialCommunityIcons name='home' size={30} />
                     )}
+                    style={styles.itemViewStyle}
+                    labelStyle={styles.itemTextStyle}
                 />
 
                 <DrawerItem
                     label={t("scan_barcode")}
                     onPress={() => navigateToScreen("ScanBarcode")}
                     icon={({ focused, size }) => (
-                        <MaterialCommunityIcons name='barcode' size={25} />
+                        <MaterialCommunityIcons name='barcode' size={30} />
                     )}
+                    style={styles.itemViewStyle}
+                    labelStyle={styles.itemTextStyle}
                 />
 
                 <DrawerItem
                     label={t("analyze_product_image")}
                     onPress={() => navigateToScreen("ScanProduct")}
                     icon={({ focused, size }) => (
-                        <MaterialCommunityIcons name='magnify-scan' size={25} />
+                        <MaterialCommunityIcons name='magnify-scan' size={30} />
                     )}
+                    style={styles.itemViewStyle}
+                    labelStyle={styles.itemTextStyle}
                 />
 
                 <DrawerItem
                     label={t("enter_voice")}
                     onPress={() => navigateToScreen("VoiceAddProduct")}
                     icon={({ focused, size }) => (
-                        <MaterialCommunityIcons name='microphone' size={25} />
+                        <MaterialCommunityIcons name='microphone' size={30} />
                     )}
+                    style={styles.itemViewStyle}
+                    labelStyle={styles.itemTextStyle}
                 />
 
                 <DrawerItem
@@ -158,16 +201,20 @@ function CustomDrawer(props) {
                         setModalVisible(true)
                     }}
                     icon={({ focused, size }) => (
-                        <MaterialCommunityIcons name='earth' size={25} />
+                        <MaterialCommunityIcons name='earth' size={30} />
                     )}
+                    style={styles.itemViewStyle}
+                    labelStyle={styles.itemTextStyle}
                 />
 
                 <DrawerItem
                     label={t("download_catalog")}
                     onPress={downloadCSV}
                     icon={({ focused, size }) => (
-                        <MaterialCommunityIcons name='download' size={25} />
+                        <MaterialCommunityIcons name='download' size={30} />
                     )}
+                    style={styles.itemViewStyle}
+                    labelStyle={styles.itemTextStyle}
                 />
 
                 <DrawerItem
@@ -178,8 +225,10 @@ function CustomDrawer(props) {
 
                     }}
                     icon={({ focused, size }) => (
-                        <MaterialCommunityIcons name='logout' size={25} />
+                        <MaterialCommunityIcons name='logout' size={30} />
                     )}
+                    style={styles.itemViewStyle}
+                    labelStyle={styles.itemTextStyle}
                 />
 
             </View>
@@ -189,5 +238,15 @@ function CustomDrawer(props) {
 
     );
 }
+
+const styles = StyleSheet.create({
+    itemTextStyle: {
+        fontSize: 20,
+
+    },
+    itemViewStyle: {
+        marginVertical: CUSTOM_MARGIN / 2,
+    }
+})
 
 export default CustomDrawer

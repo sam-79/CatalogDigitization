@@ -12,16 +12,16 @@ import ur from '../locales/ur.json';
 import gu from '../locales/gu.json';
 
 export const languageResources = {
-  en: { translation: en },
-  hi: { translation: hi },
-  // bn: {translation: bn},
-  mr: { translation: mr },
-  pa: { translation: pa },
-  ml: { translation: ml },
-  ta: { translation: ta },
-  te: { translation: te },
-  ur: { translation: ur },
-  gu: { translation: gu },
+  en: { translation: en, language:"English" },
+  hi: { translation: hi, language:"हिन्दी" },
+  // bn: {translation: bn, language:""},
+  mr: { translation: mr, language:"मराठी" },
+  pa: { translation: pa, language:"ਪੰਜਾਬੀ" },
+  ml: { translation: ml, language:"മലയാളം" },
+  ta: { translation: ta, language:"தமிழ்" },
+  te: { translation: te, language:"తెలుగు" },
+  ur: { translation: ur, language:"اردو" },
+  gu: { translation: gu, language:"ગુજરાતી" },
 };
 
 // import { store } from '../redux/store';

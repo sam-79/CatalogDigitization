@@ -24,7 +24,7 @@ export const addProduct = (params) => {
             const response = await fetch(`${params.hostname}/products_add`, requestOptions);
             const jsonData = await response.json();
 
-            //console.log("products Add", jsonData)
+            console.log(response.status, "\nproducts Add", jsonData)
             if (response.status === 200) {
                 resolve(jsonData); // Resolve the promise with the JSON data
             } else if (response.status === 422) {
@@ -132,7 +132,7 @@ export const updateProduct = (params) => {
         const { name, brand, image_url, category, ean, description, price } = params.product;
         var raw = JSON.stringify({ name, brand, image_url, category, ean: String(ean), description, price });
 
-
+        console.log('retails product line 135, update product')
         var requestOptions = {
             method: 'PUT',
             headers: myHeaders,
@@ -144,10 +144,10 @@ export const updateProduct = (params) => {
             const response = await fetch(`${params.hostname}/product_update/${params.product.id}`, requestOptions);
             const jsonData = await response.json();
 
-            //console.log("products updated", jsonData)
-            if (response.status === 200) {
+            if (response.status == 200) {
+                console.log("4other products updated", jsonData, response.status)
                 resolve(jsonData); // Resolve the promise with the JSON data
-            } else if (response.status === 422) {
+            } else if (response.status == 422) {
                 // Handle status 422 error
                 reject({ status: 422, message: 'Validation error' });
             } else {
@@ -167,6 +167,7 @@ export const getAllProduct = createAsyncThunk('getAllProduct', async (params, th
 
     var myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${params.userData.access_token}`)
+    myHeaders.append("Content-Type", "application/json");
 
     var requestOptions = {
         method: 'GET',
@@ -187,6 +188,7 @@ export const getAllProduct = createAsyncThunk('getAllProduct', async (params, th
     try {
         const response = await fetch(`${params.hostname}/get_products`, requestOptions);
         jsonData = await response.json();
+        console.log("asdas", jsonData)
         if (response.status == 200 && jsonData.products) {
             return thunkApi.fulfillWithValue(jsonData)
         }
@@ -229,9 +231,9 @@ export const getProductByImage = (params) => {
             const response = await fetch(`${params.hostname}/product_search_by_image`, requestOptions);
             const jsonData = await response.json();
 
-            //console.log("👌👌products detaisl by image ", jsonData)
+            console.log("👌👌products detaisl by image ", jsonData)
             if (response.status === 200) {
-                resolve(jsonData.product_details); // Resolve the promise with the JSON data
+                resolve(jsonData); // Resolve the promise with the JSON data
             } else if (response.status === 422) {
                 // Handle status 422 error
                 reject({ status: 422, message: 'Validation error' });
@@ -328,3 +330,162 @@ export const getProductByAudio = (params) => {
         }
     });
 };
+
+export const getProductStats = createAsyncThunk('getProductStats', async (params, thunkApi) => {
+    //console.log('🚀 ~ file: retailProduct.js:6 ~ getAllProduct ~ params:', params);
+
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${params.userData.access_token}`)
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow',
+    };
+
+    // return thunkApi.fulfillWithValue([{
+    //     name: "Lip balm",
+    //     brand: 'Himalaya',
+    //     image_url: 'https://rukminim2.flixcart.com/image/850/1000/k3q76a80/lip-balm/y/2/b/60-lip-balm-himalaya-original-imafm43pa4hdmpmm.jpeg?q=90&crop=false',
+    //     category: 'Skin Care',
+    //     ean: "12345678912345",
+    //     description: '10G lip balm',
+    //     price: '40',
+    //     id: 123
+    // }])
+    try {
+        const response = await fetch(`${params.hostname}/products_stats`, requestOptions);
+        jsonData = await response.json();
+        if (response.status == 200 && jsonData) {
+            return thunkApi.fulfillWithValue(jsonData)
+        }
+        else {
+            return thunkApi.rejectWithValue({ detail: "Cannot get Product stats" })
+        }
+
+
+    } catch (error) {
+        return thunkApi.rejectWithValue(error.message);
+    }
+});
+
+
+
+//Audio to text
+export const getProductsByAudioText = (params) => {
+    return new Promise(async (resolve, reject) => {
+        console.log('🚀 ~ file: retailProduct.js:45 ~ getproductByAudioText ~ params:', params);
+
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", `Bearer ${params.userData.access_token}`);
+
+        var raw = JSON.stringify({
+            "voice_input": params.resultText
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        try {
+            const response = await fetch(`${params.hostname}/product_voice_search`, requestOptions);
+            const jsonData = await response.json();
+
+            console.log("products detaisl get voice search ", jsonData)
+            if (response.status === 200) {
+                resolve(jsonData); // Resolve the promise with the JSON data
+            } else if (response.status === 422) {
+                // Handle status 422 error
+                reject({ status: 422, message: 'Validation error' });
+            } else {
+                // Handle other errors
+                reject({ status: response.status, message: 'Unable to find Product' });
+            }
+        } catch (error) {
+            reject(error.message); // Reject the promise with the error message
+        }
+    });
+}
+
+export const addBulkProduct = (params) => {
+    return new Promise(async (resolve, reject) => {
+        console.log('🚀 ~ file: retailProduct.js:6 ~ addBulkProduct ~ params:', params);
+
+       
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", `Bearer ${params.access_token}`)
+
+        var raw = JSON.stringify({ product_details: params.productsList });
+
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow',
+        };
+
+        try {
+            const response = await fetch(`${params.hostname}/bulk_products_add`, requestOptions);
+            const jsonData = await response.json();
+
+            console.log(response.status, "\nproducts Add", jsonData)
+            if (response.status === 200) {
+                resolve(jsonData); // Resolve the promise with the JSON data
+            } else if (response.status === 422) {
+                // Handle status 422 error
+                reject({ status: 422, message: 'Validation error' });
+            } else {
+                // Handle other errors
+                reject({ status: response.status, message: 'Unknown error' });
+            }
+        } catch (error) {
+            reject(error.message); // Reject the promise with the error message
+        }
+    });
+};
+
+export const addProductCSV = (params)=>{
+    return new Promise(async (resolve, reject) => {
+        //console.log('🚀 ~ file: retailProduct.js:6 ~ addProduct ~ params:', params);
+
+        const formData = new FormData();
+        formData.append('file', params.file);
+
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${params.access_token}`)
+        myHeaders.append('Content-Type', 'multipart/form-data',)
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: formData,
+            redirect: 'follow',
+        };
+
+        try {
+            const response = await fetch(`${params.hostname}/products_add`, requestOptions);
+            const jsonData = await response.json();
+
+            console.log(response.status, "\nproducts Add", jsonData)
+            if (response.status === 200) {
+                resolve(jsonData); // Resolve the promise with the JSON data
+            } else if (response.status === 422) {
+                // Handle status 422 error
+                reject({ status: 422, message: 'Validation error' });
+            } else {
+                // Handle other errors
+                reject({ status: response.status, message: 'Unknown error' });
+            }
+        } catch (error) {
+            reject(error.message); // Reject the promise with the error message
+        }
+    });
+}
+

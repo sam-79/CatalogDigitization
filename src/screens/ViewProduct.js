@@ -5,6 +5,7 @@ import ProductInfo from '../components/ProductInfo'
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { deleteProduct, getProductById, updateProduct } from '../api/retailproduct'
+import { APP_SCREENS } from '../constants';
 
 
 const ViewProduct = ({ navigation, route }) => {
@@ -88,7 +89,7 @@ const ViewProduct = ({ navigation, route }) => {
             .then((response) => {
                 setIsLoading(false);
                 Alert.alert(t("success"), t("product_deleted"))
-                navigation.navigate("Home")
+                navigation.navigate(APP_SCREENS.HOME)
             })
             .catch((error) => {
                 setIsLoading(false);
