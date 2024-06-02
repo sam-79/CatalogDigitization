@@ -97,7 +97,7 @@
   "total_products": "ઉત્પાદનો",
   "view_all": "બધુજ જુઓ",
   "total_category": "શ્રેણીઓ",
-  "setting": "સેટિંગ્સ",
+  "settings": "સેટિંગ્સ",
   "share": "શેર કરો",
   "share_app": "એપ્લિકેશન શેર કરો",
   "follow_us": "અમને અનુસરો",
@@ -129,9 +129,12 @@
   "enter_name": "નામ દાખલ કરો",
   "input_data": "ઇનપુટ ડેટા",
   "begin_your_digitisation_journey": "તમારી ડિજિટાઇઝેશન યાત્રા શરૂ કરો",
-  "product": "ઉત્પાદનો",
+  "products": "ઉત્પાદનો",
   "review_product_details": "ઉત્પાદનોની વિગતોની સમીક્ષા કરો",
   "theme": "થીમ",
   "choose_theme": "થીમ પસંદ કરો",
-  "light": "પ્રકાશ"
+  "light": "પ્રકાશ",
+  "catalog_statistics": "કેટલોગ આંકડા",
+  "voice_reg_para": "",
+  "voice_input": "વૉઇસ ઇનપુટ"
 }

@@ -200,7 +200,7 @@ const shareApp = async () => {
   try {
     const result = await Share.share({
       message:
-        'Download the catalog digitization app ',
+        'Download the catalog digitization app, https://drive.google.com/drive/folders/1XnbMttK6q14b1VJfZYQ4CnF3aDb2btJg ',
     });
     if (result.action === Share.sharedAction) {
       if (result.activityType) {

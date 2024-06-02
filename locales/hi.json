@@ -97,7 +97,7 @@
   "total_products": "उत्पादों",
   "view_all": "सभी को देखें",
   "total_category": "श्रेणियाँ",
-  "setting": "समायोजन",
+  "settings": "समायोजन",
   "share": "शेयर करना",
   "share_app": "ऐप साझा करें",
   "follow_us": "हमारे पर का पालन करें",
@@ -129,9 +129,12 @@
   "enter_name": "नाम दर्ज करें",
   "input_data": "इनपुट डेटा",
   "begin_your_digitisation_journey": "अपनी डिजिटलीकरण यात्रा शुरू करें",
-  "product": "उत्पादों",
+  "products": "उत्पादों",
   "review_product_details": "उत्पादों के विवरण की समीक्षा करें",
-  "theme": "थीम",
+  "theme": "विषय",
   "choose_theme": "थीम चुनें",
-  "light": "रोशनी"
+  "light": "रोशनी",
+  "catalog_statistics": "कैटलॉग सांख्यिकी",
+  "voice_reg_para": "",
+  "voice_input": "आवाज़ डालना"
 }

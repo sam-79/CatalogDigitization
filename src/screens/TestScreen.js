@@ -30,9 +30,9 @@ const TestScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Paragraph style={styles.description}>
+      {/* <Paragraph style={styles.description}>
         {t('voice_reg_para')}
-      </Paragraph>
+      </Paragraph> */}
       {/* <Text variant='bodyLarge'>
         Enter data here{'\n'}{result}
       </Text> */}

@@ -97,7 +97,7 @@
     "total_products": "পণ্য",
     "view_all": "সব দেখ",
     "total_category": "ক্যাটাগরি",
-    "setting": "সেটিংস",
+    "settings": "সেটিংস",
     "share": "শেয়ার করুন",
     "share_app": "অ্যাপটি শেয়ার করুন",
     "follow_us": "আমাদের অনুসরণ করো",
@@ -129,9 +129,12 @@
     "enter_name": "নাম লিখুন",
     "input_data": "তথ্য অন্তর্ভুক্তী",
     "begin_your_digitisation_journey": "আপনার ডিজিটাইজেশন যাত্রা শুরু করুন",
-    "product": "পণ্য",
+    "products": "পণ্য",
     "review_product_details": "পণ্য বিবরণ পর্যালোচনা",
-    "theme": "!!!>>> Failed to fetch <<<!!!",
+    "theme": "থিম",
     "choose_theme": "থিম চয়ন করুন",
-    "light": "আলো"
+    "light": "আলো",
+    "catalog_statistics": "ক্যাটালগ পরিসংখ্যান",
+    "voice_reg_para": "",
+    "voice_input": "ভয়েস ইনপুট"
   }

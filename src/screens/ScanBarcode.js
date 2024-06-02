@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Pressable, Dimensions, Image, StyleSheet, StatusBar, Linking } from 'react-native';
+import { View, Pressable, Dimensions, Image, StyleSheet, StatusBar, Linking, Alert } from 'react-native';
 import { Text, Button, useTheme } from 'react-native-paper';
-import { CameraView as Camera, useCameraPermissions } from 'expo-camera/next';
+import { CameraView as Camera, useCameraPermissions } from 'expo-camera';
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { HomeStyles } from './styles';
 import { useTranslation } from 'react-i18next';
@@ -33,25 +33,6 @@ const ScanBarcode = ({ navigation }) => {
         requestPermission();
     }, []);
 
-    // if (!permission) {
-    //     // Camera permissions are still loading
-    //     return (
-    //         <View>
-    //             <Text>{t("wait_permission")}</Text>
-    //             <Button onPress={requestPermission} title={t("grant_permission")} />
-    //         </View>
-    //     );
-    // }
-
-    // if (!permission.granted) {
-    //     // Camera permissions are not granted yet
-    //     return (
-    //         <View style={{}}>
-    //             <Text style={{ textAlign: 'center' }}>{t("need_permission_for_camera")}</Text>
-    //             <Button onPress={requestPermission} title={t("grant_permission")} />
-    //         </View>
-    //     );
-    // }
 
     const onBarCodeScanned = async ({ data }) => {
         setBarcodeValue(data);
@@ -61,7 +42,8 @@ const ScanBarcode = ({ navigation }) => {
                 setImageUri(uri);
             }
         } catch (error) {
-
+            // Alert.alert("Error", "failed to capture barcode")
+            console.log("fail to capture bbarcode")
         }
     };
 
@@ -148,7 +130,8 @@ const ScanBarcode = ({ navigation }) => {
                                 ref={cameraRef}
                                 enableTorch={flash}
                                 barCodeScannerSettings={{
-                                    barCodeTypes: ['aztec', 'ean13', 'ean8', 'qr', 'pdf417', 'upc_e', 'datamatrix', 'code39', 'code93', 'itf14', 'codabar', 'code128', 'upc_a'],
+                                    barCodeTypes: ['ean13', 'ean8', 'upc_e', 'upc_a'],
+                                    // barCodeTypes: ['aztec', 'ean13', 'ean8', 'qr', 'pdf417', 'upc_e', 'datamatrix', 'code39', 'code93', 'itf14', 'codabar', 'code128', 'upc_a'],
                                 }}
                                 onBarcodeScanned={onBarCodeScanned}
                             />
@@ -161,7 +144,7 @@ const ScanBarcode = ({ navigation }) => {
                             >
                                 <MaterialCommunityIcons name='torch' size={30} color={flash ? '#000000' : '#fff'} />
                             </Pressable> */}
-
+                            <Text style={{ textAlign: 'center' }} >If barcode is not getting scanned click on the torch button</Text>
                             <Button icon='torch'
                                 mode='elevated'
                                 // dark={true}

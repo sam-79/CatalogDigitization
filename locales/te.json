@@ -97,7 +97,7 @@
   "total_products": "ఉత్పత్తులు",
   "view_all": "అన్నీ చూడండి",
   "total_category": "కేటగిరీలు",
-  "setting": "సెట్టింగ్‌లు",
+  "settings": "సెట్టింగ్‌లు",
   "share": "షేర్ చేయండి",
   "share_app": "యాప్‌ను షేర్ చేయండి",
   "follow_us": "మమ్మల్ని అనుసరించు",
@@ -129,9 +129,12 @@
   "enter_name": "పేరు నమోదు చేయండి",
   "input_data": "ఇన్‌పుట్ డేటా",
   "begin_your_digitisation_journey": "మీ డిజిటలైజేషన్ ప్రయాణాన్ని ప్రారంభించండి",
-  "product": "ఉత్పత్తులు",
+  "products": "ఉత్పత్తులు",
   "review_product_details": "ఉత్పత్తుల వివరాలను సమీక్షించండి",
   "theme": "థీమ్",
   "choose_theme": "థీమ్‌ని ఎంచుకోండి",
-  "light": "కాంతి"
+  "light": "కాంతి",
+  "catalog_statistics": "కేటలాగ్ గణాంకాలు",
+  "voice_reg_para": "",
+  "voice_input": "వాయిస్ ఇన్‌పుట్"
 }

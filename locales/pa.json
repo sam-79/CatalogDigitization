@@ -97,7 +97,7 @@
   "total_products": "ਉਤਪਾਦ",
   "view_all": "ਸਾਰੇ ਦੇਖੋ",
   "total_category": "ਵਰਗ",
-  "setting": "ਸੈਟਿੰਗਾਂ",
+  "settings": "ਸੈਟਿੰਗਾਂ",
   "share": "ਸ਼ੇਅਰ ਕਰੋ",
   "share_app": "ਐਪ ਨੂੰ ਸਾਂਝਾ ਕਰੋ",
   "follow_us": "ਸਾਡੇ ਪਿਛੇ ਆਓ",
@@ -129,9 +129,12 @@
   "enter_name": "ਨਾਮ ਦਰਜ ਕਰੋ",
   "input_data": "ਇਨਪੁਟ ਡੇਟਾ",
   "begin_your_digitisation_journey": "ਆਪਣੀ ਡਿਜੀਟਲਾਈਜ਼ੇਸ਼ਨ ਯਾਤਰਾ ਸ਼ੁਰੂ ਕਰੋ",
-  "product": "ਉਤਪਾਦ",
+  "products": "ਉਤਪਾਦ",
   "review_product_details": "ਉਤਪਾਦਾਂ ਦੇ ਵੇਰਵਿਆਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ",
   "theme": "ਥੀਮ",
   "choose_theme": "ਥੀਮ ਚੁਣੋ",
-  "light": "ਚਾਨਣ"
+  "light": "ਚਾਨਣ",
+  "catalog_statistics": "ਕੈਟਾਲਾਗ ਅੰਕੜੇ",
+  "voice_reg_para": "",
+  "voice_input": "ਵੌਇਸ ਇਨਪੁੱਟ"
 }

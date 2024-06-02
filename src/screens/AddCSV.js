@@ -45,7 +45,7 @@ const AddCSV = () => {
   };
 
   const handleViewSample = () => {
-    const sampleUrl = 'https://example.com/sample-catalog.csv'; // Replace with your sample file URL
+    const sampleUrl = 'https://drive.google.com/file/d/1XHHOaAQnu1UPd6T4yKkjRIyCiZJx2msh/view?usp=sharing'; // Replace with your sample file URL
     Linking.openURL(sampleUrl);
   };
 
@@ -69,6 +69,9 @@ const AddCSV = () => {
       >
         {t("view_sample_csv")}
       </Button>
+      
+      <Text variant='headlineSmall' style={{color:"red"}}>This feature is under development</Text>
+
     </View>
   );
 };

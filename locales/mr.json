@@ -97,7 +97,7 @@
   "total_products": "उत्पादने",
   "view_all": "सर्व पहा",
   "total_category": "श्रेण्या",
-  "setting": "सेटिंग्ज",
+  "settings": "सेटिंग्ज",
   "share": "शेअर करा",
   "share_app": "ॲप शेअर करा",
   "follow_us": "आमच्या मागे या",
@@ -129,9 +129,12 @@
   "enter_name": "नाव प्रविष्ट करा",
   "input_data": "इनपुट डेटा",
   "begin_your_digitisation_journey": "तुमचा डिजिटायझेशन प्रवास सुरू करा",
-  "product": "उत्पादने",
+  "products": "उत्पादने",
   "review_product_details": "उत्पादनांच्या तपशीलांचे पुनरावलोकन करा",
   "theme": "थीम",
   "choose_theme": "थीम निवडा",
-  "light": "प्रकाश"
+  "light": "प्रकाश",
+  "catalog_statistics": "कॅटलॉग आकडेवारी",
+  "voice_reg_para": "",
+  "voice_input": "व्हॉइस इनपुट"
 }

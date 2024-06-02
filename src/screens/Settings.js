@@ -16,8 +16,10 @@ const Settings = () => {
 
   return (
     <View style={styles.container}>
-      <Text>{t("settings")}</Text>
 
+      <Text>Under Development</Text>
+
+      {/* <Text>{t("settings")}</Text>
       <TouchableRipple onPress={() => setThemeDialogVisible(true)} rippleColor={theme.colors.primary} style={styles.radioBtnView}>
         <>
           <Text variant='titleLarge'>{t('theme')}</Text>
@@ -26,7 +28,7 @@ const Settings = () => {
               <Dialog.Title>{t("choose_theme")}</Dialog.Title>
               <Dialog.Content>
 
-                {/* //RadioButtons for theme selections */}
+                
                 <FlatList
                   data={themeOptions}
                   renderItem={({ item, index }) => (
@@ -50,7 +52,7 @@ const Settings = () => {
             </Dialog>
           </Portal>
         </>
-      </TouchableRipple>
+      </TouchableRipple> */}
 
     </View>
   )

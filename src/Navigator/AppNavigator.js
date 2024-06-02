@@ -57,7 +57,7 @@ const AppNavigation = () => {
     //console.log( '🚀 ~ file: AppNavigation.js:23 ~ AppNavigation ~ userData:', userData,);
     return (
         <NavigationContainer>
-            {!(userData && userVerified) ? (
+            {(userData && userVerified) ? (
                 <Stack.Navigator drawerContent={(props) => <CustomDrawer {...props} />}  >
                     <Stack.Group initialRouteName={APP_SCREENS.HOME} screenOptions={{
                         headerShown: true,

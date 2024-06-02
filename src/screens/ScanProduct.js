@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Image, StyleSheet, StatusBar, Dimensions, Linking } from 'react-native';
 import { Button, Text, useTheme } from 'react-native-paper';
-import { CameraView as Camera, useCameraPermissions } from 'expo-camera/next';
+import { CameraView as Camera, useCameraPermissions } from 'expo-camera';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import { HomeStyles } from './styles';
 import { CameraType } from 'expo-camera';

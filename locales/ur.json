@@ -77,7 +77,7 @@
   "recording": "ریکارڈنگ...",
   "speak_product_name": "پروڈکٹ کا نام اور تفصیلات بتائیں",
   "loud_n_clear": "بلند اور واضح ہو",
-  "playing": "کھیلنا",
+  "playing": "کھیل رہا ہے۔",
   "play_audio": "آڈیو چلائیں۔",
   "profile": "پروفائل",
   "need_permission_for_mic": "ہمیں مائیکروفون تک رسائی کے لیے آپ کی اجازت درکار ہے۔",
@@ -97,7 +97,7 @@
   "total_products": "مصنوعات",
   "view_all": "سب دیکھیں",
   "total_category": "اقسام",
-  "setting": "ترتیبات",
+  "settings": "ترتیبات",
   "share": "بانٹیں",
   "share_app": "ایپ کا اشتراک کریں۔",
   "follow_us": "ہمیں فالو کریں",
@@ -129,9 +129,12 @@
   "enter_name": "نام درج کریں",
   "input_data": "ان پٹ ڈیٹا",
   "begin_your_digitisation_journey": "اپنا ڈیجیٹلائزیشن سفر شروع کریں۔",
-  "product": "مصنوعات",
+  "products": "مصنوعات",
   "review_product_details": "مصنوعات کی تفصیلات کا جائزہ لیں۔",
   "theme": "خیالیہ",
   "choose_theme": "تھیم کا انتخاب کریں۔",
-  "light": "روشنی"
+  "light": "روشنی",
+  "catalog_statistics": "کیٹلاگ شماریات",
+  "voice_reg_para": "",
+  "voice_input": "صوتی ان پٹ"
 }

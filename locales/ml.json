@@ -39,7 +39,7 @@
   "we_need_your_permission_to_show_the_camera": "ക്യാമറ കാണിക്കാൻ ഞങ്ങൾക്ക് നിങ്ങളുടെ അനുമതി ആവശ്യമാണ്",
   "not_have_account_Sign_Up": "അക്കൗണ്ട് ഇല്ല, സൈൻ അപ്പ് ചെയ്യുക",
   "already_have_account": "ഇതിനകം അക്കൗണ്ട് ഉണ്ട്, സൈൻ ഇൻ ചെയ്യുക",
-  "failed_to_update_product": "ഉൽപ്പന്നം അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു",
+  "failed_to_update_product": "ഉൽപ്പന്നം അപ്ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു",
   "update_Product_Details": "ഉൽപ്പന്ന വിശദാംശങ്ങൾ അപ്ഡേറ്റ് ചെയ്യുക",
   "product_Details": "ഉൽപ്പന്നത്തിന്റെ വിവരം",
   "update_Product": "ഉൽപ്പന്നം അപ്ഡേറ്റ് ചെയ്യുക",
@@ -97,7 +97,7 @@
   "total_products": "ഉൽപ്പന്നങ്ങൾ",
   "view_all": "എല്ലാം കാണുക",
   "total_category": "വിഭാഗങ്ങൾ",
-  "setting": "ക്രമീകരണങ്ങൾ",
+  "settings": "ക്രമീകരണങ്ങൾ",
   "share": "പങ്കിടുക",
   "share_app": "ആപ്പ് പങ്കിടുക",
   "follow_us": "ഞങ്ങളെ പിന്തുടരുക",
@@ -129,9 +129,12 @@
   "enter_name": "പേര് നൽകുക",
   "input_data": "ഇൻപുട്ട് ഡാറ്റ",
   "begin_your_digitisation_journey": "നിങ്ങളുടെ ഡിജിറ്റൈസേഷൻ യാത്ര ആരംഭിക്കുക",
-  "product": "ഉൽപ്പന്നങ്ങൾ",
+  "products": "ഉൽപ്പന്നങ്ങൾ",
   "review_product_details": "ഉൽപ്പന്ന വിശദാംശങ്ങൾ അവലോകനം ചെയ്യുക",
   "theme": "തീം",
   "choose_theme": "തീം തിരഞ്ഞെടുക്കുക",
-  "light": "വെളിച്ചം"
+  "light": "വെളിച്ചം",
+  "catalog_statistics": "കാറ്റലോഗ് സ്ഥിതിവിവരക്കണക്കുകൾ",
+  "voice_reg_para": "",
+  "voice_input": "വോയ്സ് ഇൻപുട്ട്"
 }
