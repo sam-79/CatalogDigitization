@@ -92,11 +92,3 @@ If you encounter any issues, ensure that:
 - Your firewall is not blocking network requests.
 
 Feel free to open an issue in the repository if you need further assistance.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-
-
-Make sure to replace the placeholders like `https://github.com/your-username/your-repo-name.git` with the actual URL of your repository and adjust any paths or commands as needed.
